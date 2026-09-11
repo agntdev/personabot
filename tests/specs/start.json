@@ -1,15 +1,10 @@
 [
   {
-    "name": "/start replies with the welcome + main menu",
+    "name": "/start opens the Arabic menu with a persona sample",
     "steps": [
       {
         "send": { "text": "/start" },
-        "expect": [
-          {
-            "method": "sendMessage",
-            "payload": { "text": "👋 Welcome! Tap a button below to get started." }
-          }
-        ]
+        "expect": [{ "method": "sendMessage", "payload": { "text": "أهلًا بك. اكتب ما يدور في بالك وسأرد بالعربية باختصار.\nمثال: أهلًا بك، أنا هنا لأساعدك بهدوء وبكلمات واضحة.\n\nهذه المحادثة ليست بديلًا عن المختص عند الحاجة." } }]
       }
     ]
   }

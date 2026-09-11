@@ -1,19 +1,10 @@
 [
   {
-    "name": "Show persona",
+    "name": "Show persona displays its Arabic card",
     "steps": [
       {
-        "expect": [
-          {
-            "method": "sendMessage",
-            "payload": {
-              "text": "Inline button to fetch and display the current persona sample and tone"
-            }
-          }
-        ],
-        "send": {
-          "callback": "persona:show"
-        }
+        "send": { "callback": "persona:show" },
+        "expect": [{ "method": "editMessageText", "payload": { "text": "هذه شخصيتي الآن:\nرفيق عربي دافئ ومختصر. استمع جيدًا، ورد بجملة أو جملتين مفيدتين وبالعربية دائمًا.\n\nاللغة: العربية\nالنبرة: دافئ ومختصر\nمثال: أهلًا بك، أنا هنا لأساعدك بهدوء وبكلمات واضحة.\nالحالة: محدَّثة." } }]
       }
     ]
   }

@@ -1,20 +1,17 @@
 [
   {
-    "name": "User message",
+    "name": "a message receives a concise Arabic reply",
+    "steps": [{ "send": { "text": "User message" }, "expect": [{ "method": "sendMessage", "payload": { "text": "بكل ود، فهمتُ أنك تقول: «User message». كيف تحب أن نتابع؟" } }] }]
+  },
+  {
+    "name": "recent conversation is reflected in the Arabic reply",
     "steps": [
-      {
-        "expect": [
-          {
-            "method": "sendMessage",
-            "payload": {
-              "text": "Any free-form user message in chat triggers a persona-styled Arabic reply"
-            }
-          }
-        ],
-        "send": {
-          "text": "User message"
-        }
-      }
+      { "send": { "text": "أحب القراءة" }, "expect": [{ "method": "sendMessage", "payload": { "text": "بكل ود، فهمتُ أنك تقول: «أحب القراءة». كيف تحب أن نتابع؟" } }] },
+      { "send": { "text": "ماذا تقترح؟" }, "expect": [{ "method": "sendMessage", "payload": { "text": "بكل ود، فهمتُ أنك تقول: «ماذا تقترح؟» وتابعتُ حديثك عن «أحب القراءة». كيف تحب أن نتابع؟" } }] }
     ]
+  },
+  {
+    "name": "unknown commands receive Arabic help",
+    "steps": [{ "send": { "text": "/unknown" }, "expect": [{ "method": "sendMessage", "payload": { "text": "لا أعرف هذا الأمر. اكتب رسالتك مباشرة أو استخدم /help." } }] }]
   }
 ]
