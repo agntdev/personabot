@@ -1,20 +1,15 @@
 [
   {
-    "name": "/persona",
+    "name": "/persona shows the current profile",
     "steps": [
       {
-        "expect": [
-          {
-            "method": "sendMessage",
-            "payload": {
-              "text": "View (and for owner: edit) the active persona profile that defines reply tone and a sample reply"
-            }
-          }
-        ],
-        "send": {
-          "text": "/persona"
-        }
+        "send": { "text": "/persona" },
+        "expect": [{ "method": "sendMessage", "payload": { "text": "هذه شخصيتي الآن:\nرفيق عربي دافئ ومختصر. استمع جيدًا، ورد بجملة أو جملتين مفيدتين وبالعربية دائمًا.\n\nاللغة: العربية\nالنبرة: دافئ ومختصر\nمثال: أهلًا بك، أنا هنا لأساعدك بهدوء وبكلمات واضحة.\nالحالة: محدَّثة." } }]
       }
     ]
+  },
+  {
+    "name": "non-owner cannot edit the persona",
+    "steps": [{ "send": { "callback": "persona:edit" }, "expect": [{ "method": "sendMessage", "payload": { "text": "إعداد وصول المالك غير جاهز بعد." } }] }]
   }
 ]

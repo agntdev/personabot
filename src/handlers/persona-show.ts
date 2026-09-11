@@ -1,17 +1,18 @@
 import { Composer } from "grammy";
+import type { Ctx } from "../bot.js";
+import { inlineButton, inlineKeyboard, isOwner, registerMainMenuItem } from "../toolkit/index.js";
+import { dataFor, personaCard } from "../persona-state.js";
 
-// SCAFFOLD — generated from the bot blueprint BEFORE the agent runs.
-// Keep a LIVE registration (.command / .callbackQuery / …) so this feature is
-// never an empty stub. Replace the reply body with real logic + copy; if you
-// change the user-facing text, update tests/specs to match EXACTLY.
-// Do NOT rewrite src/bot.ts — buildBot() already auto-loads this module.
-// Menu: wire this into /start via registerMainMenuItem({ label: "Show persona", data: "persona:show" }) if the toolkit exposes it.
-
-const composer = new Composer();
+registerMainMenuItem({ label: "عرض الشخصية", data: "persona:show", order: 10 });
+const composer = new Composer<Ctx>();
 
 composer.callbackQuery("persona:show", async (ctx) => {
   await ctx.answerCallbackQuery();
-  await ctx.reply("Inline button to fetch and display the current persona sample and tone");
+  const data = dataFor(ctx);
+  const rows = isOwner(ctx)
+    ? [[inlineButton("تعديل الشخصية", "persona:edit")], [inlineButton("إعدادات المالك", "persona:settings")], [inlineButton("العودة للقائمة", "menu:main")]]
+    : [[inlineButton("العودة للقائمة", "menu:main")]];
+  await ctx.editMessageText(personaCard(data), { reply_markup: inlineKeyboard(rows) });
 });
 
 export default composer;
