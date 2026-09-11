@@ -1,0 +1,20 @@
+[
+  {
+    "name": "/persona",
+    "steps": [
+      {
+        "expect": [
+          {
+            "method": "sendMessage",
+            "payload": {
+              "text": "View (and for owner: edit) the active persona profile that defines reply tone and a sample reply"
+            }
+          }
+        ],
+        "send": {
+          "text": "/persona"
+        }
+      }
+    ]
+  }
+]
